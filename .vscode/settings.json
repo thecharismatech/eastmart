@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        "**/.DS_Store": true,
+        "**/.git": true,
+        "**/.hg": true,
+        "**/.history": true,
+        "**/.svn": true,
+        "**/.vscode": true,
+        "**/CVS": true,
+        "**/Thumbs.db": true
+    },
+    "explorerExclude.backup": {}
+}

@@ -1,0 +1,23 @@
+# Ignore all .pyc files
+*.pyc
+*.pyo
+*~*
+
+# Ignore all .history files
+.history/
+
+# Ignore IntelliJ project files
+*.iml
+.idea/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore other files you don't want to track
+*.log
+*.lock
+*.bin
+*.sqlite3
+*.swp
+*.rej
+.DS_Store
