@@ -20,17 +20,16 @@
 #
 #############################################################################
 from odoo import api, fields, models
-from odoo.tools import decode_message_header
 
 
 class ResConfigSettings(models.TransientModel):
-    """Inherits 'res.config.settings' and adds new field """
+    """Inherits 'res.config.settings' to add multi UoM configuration for POS"""
     _inherit = 'res.config.settings'
 
-    pos_multi_uom = fields.Boolean(string="Multi UoM",
-                                   related="pos_config_id.pos_multi_uom",
-                                   readonly=False,
-                                   config_parameter="product_multi_uom_pos."
-                                                    "pos_multi_uom",
-                                   help='UoM of products can be changed in '
-                                        'POS if enabled')
+    pos_multi_uom = fields.Boolean(
+        string="Multi UoM",
+        related="pos_config_id.pos_multi_uom",
+        readonly=False,
+        config_parameter="product_multi_uom_pos.pos_multi_uom",
+        help='Enable to allow changing product UoM in POS'
+    )

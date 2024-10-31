@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="PaymentScreenPaymentLine" t-inherit="point_of_sale.PaymentScreenPaymentLine" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('payment-line')]" position="inside">
+            <div class="transaction-number" t-if="props.line.transaction_number">
+                <span>Transaction: </span>
+                <t t-esc="props.line.transaction_number"/>
+            </div>
+        </xpath>
+    </t>
+
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('pos-receipt-amount')]" position="after">
+            <t t-if="line.transaction_number">
+                <div class="pos-receipt-transaction">
+                    Transaction: <t t-esc="line.transaction_number"/>
+                </div>
+            </t>
+        </xpath>
+    </t>
+</templates>
