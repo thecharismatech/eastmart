@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #############################################################################
 #
 #    Cybrosys Technologies Pvt. Ltd.
@@ -24,7 +23,7 @@
 #############################################################################
 {
     'name': "POS Product Multiple UOM",
-    'version': '18.0.1.0.2',
+    'version': "18.0.1.0.0",
     'category': 'Point of Sale',
     'summary': """A module to manage multiple UoM in POS""",
     'description': """Using this app, you can change unit of measure of
