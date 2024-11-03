@@ -20,7 +20,9 @@
     ],
     'assets': {
         'point_of_sale.assets': [
-            'pos_payment_transaction/static/src/app/**/*',
+            'pos_payment_transaction/static/src/app/**/*.js',
+            'pos_payment_transaction/static/src/app/**/*.xml',
+            'pos_payment_transaction/static/src/app/**/*.scss',
         ],
     },
     'license': 'LGPL-3',

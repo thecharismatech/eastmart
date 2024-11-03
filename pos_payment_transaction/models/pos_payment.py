@@ -4,8 +4,18 @@ from odoo.exceptions import ValidationError
 class POSPayment(models.Model):
     _inherit = 'pos.payment'
 
-    transaction_number = fields.Char(string='Transaction Number', size=6)
-    
+    transaction_number = fields.Char(
+        string='Transaction Number',
+        size=6,
+        required=True,
+        index=True
+    )
+
+    _sql_constraints = [
+        ('unique_transaction',
+         'unique(transaction_number)',
+         'Transaction number must be unique')
+    ]    
     @api.constrains('transaction_number')
     def _check_transaction_number(self):
         for payment in self:
