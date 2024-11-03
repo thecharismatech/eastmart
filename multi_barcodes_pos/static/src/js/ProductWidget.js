@@ -1,6 +1,6 @@
 /** @odoo-module */
 import { patch } from "@web/core/utils/patch";
-import { PosDB } from "@point_of_sale/app/store/db";
+import { PosDB } from "@point_of_sale/store/db";
 import { unaccent } from "@web/core/utils/strings";
 
 patch(PosDB.prototype, {

@@ -1,6 +1,6 @@
 /** @odoo-module */
 
-import { Orderline } from "@point_of_sale/app/generic_components/orderline/orderline";
+import { Orderline } from "@point_of_sale/components/orderline/orderline";
 import { useRef } from "@odoo/owl";
 import { patch } from "@web/core/utils/patch";
 

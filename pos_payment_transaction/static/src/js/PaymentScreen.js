@@ -1,8 +1,8 @@
-﻿odoo.define('pos_payment_transaction.PaymentScreen', function(require) {
+﻿//** @odoo-module **/('pos_payment_transaction.PaymentScreen', function(require) {
     'use strict';
 
-    const PaymentScreen = require('point_of_sale.PaymentScreen');
-    const Registries = require('point_of_sale.Registries');
+    const PaymentScreen = import 'point_of_sale.PaymentScreen');
+    const Registries = import 'point_of_sale/Registries');
 
     const PosPaymentTransactionPaymentScreen = PaymentScreen => class extends PaymentScreen {
         async validatePaymentTransaction(paymentLine) {

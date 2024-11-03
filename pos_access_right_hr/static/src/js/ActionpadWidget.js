@@ -1,6 +1,6 @@
 /** @odoo-module */
 import { patch } from "@web/core/utils/patch";
-import { ActionpadWidget } from "@point_of_sale/app/screens/product_screen/action_pad/action_pad";
+import { ActionpadWidget } from "@point_of_sale/components/screens/product_screen/action_pad/action_pad";
 
 //Patching ActionpadWidget to disable customer and payment
 patch(ActionpadWidget.prototype, {
