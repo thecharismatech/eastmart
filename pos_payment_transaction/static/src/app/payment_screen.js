@@ -13,22 +13,35 @@ patch(PaymentScreen.prototype, {
         
         for (const line of paymentLines) {
             if (line.payment_method.type === 'bank') {
-                const { confirmed, payload } = await this.popup.add({
-                    title: 'Transaction Number Required',
-                    body: 'Enter 6-digit transaction number',
-                    inputType: 'text',
-                    maxLength: 6,
-                    confirmText: 'Confirm',
-                    cancelText: 'Cancel'
-                });
-                
-                if (!confirmed || !payload || !payload.match(/^\d{6}$/)) {
-                    return false;
-                }
-                line.transaction_number = payload;
+                const result = await this._validateTransactionNumber(line);
+                if (!result) return false;
             }
         }
-        
         return super.validateOrder(force_validation);
+    },
+
+    async _validateTransactionNumber(paymentLine) {
+        const { confirmed, payload } = await this.popup.add({
+            title: 'Bank Transaction',
+            body: 'Enter 6-digit transaction number to proceed',
+            inputType: 'text',
+            maxLength: 6,
+            confirmText: 'Validate',
+            cancelText: 'Cancel',
+            pattern: '[0-9]*'
+        });
+
+        if (!confirmed) return false;
+        if (!payload || !payload.match(/^\d{6}$/)) {
+            await this.popup.add({
+                title: 'Invalid Input',
+                body: 'Please enter exactly 6 digits',
+                type: 'error'
+            });
+            return false;
+        }
+
+        paymentLine.transaction_number = payload;
+        return true;
     }
 });
