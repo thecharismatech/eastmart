@@ -1,43 +1,22 @@
-import { Component, useState } from "@odoo/owl";
-import { useService } from "@web/core/utils/hooks";
-import { registry } from "@web/core/registry";
+import { PaymentScreen } from "@point_of_sale/app/screens/payment_screen/payment_screen";
+import { patch } from "@web/core/utils/patch";
 
-export class PaymentTransactionScreen extends Component {
-    static template = "pos_payment_transaction.PaymentScreen";
-    
+patch(PaymentScreen.prototype, {
     setup() {
-        this.state = useState({
-            transactionNumber: "",
-            isValid: false
-        });
-        this.popup = useService("popup");
-        this.pos = useService("pos");
-    }
-
-    onTransactionInput(ev) {
-        const value = ev.target.value.replace(/\D/g, '').slice(0, 6);
-        this.state.transactionNumber = value;
-        this.state.isValid = value.length === 6;
-    }
-
-    validateAndProcess() {
-        if (!this.state.isValid) {
+        super.setup();
+        this.popup = this.env.services.popup;
+    },
+    
+    async validatePayment(paymentLine) {
+        const transactionNumber = paymentLine.transaction_number;
+        if (!transactionNumber || !transactionNumber.match(/^\d{6}$/)) {
             this.popup.add({
                 title: 'Transaction Required',
                 body: 'Enter exactly 6 digits',
                 type: 'error'
             });
-            return;
+            return false;
         }
-        this.processPayment();
+        return super.validatePayment(paymentLine);
     }
-
-    async processPayment() {
-        await this.pos.createPayment({
-            transactionNumber: this.state.transactionNumber,
-            transactionValidated: true
-        });
-    }
-}
-
-registry.category("pos_screens").add("PaymentTransactionScreen", PaymentTransactionScreen);
+});
