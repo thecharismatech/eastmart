@@ -40,8 +40,8 @@
             'views/pos_order_views.xml',
         ],
     'assets': {
-        'point_of_sale._assets_pos': [
-            'product_multi_uom_pos/static/src/**/*',
+        'point_of_sale.assets': [
+            'product_multi_uom_pos/static/src/app/**/*',
         ],
     },
     'images': [
