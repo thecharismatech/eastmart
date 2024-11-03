@@ -5,7 +5,6 @@ import { useRef } from "@odoo/owl";
 import { patch } from "@web/core/utils/patch";
 
 patch(Orderline.prototype, {
-
     props: {
         ...Orderline.props,
         line: {
@@ -18,9 +17,8 @@ patch(Orderline.prototype, {
         },
     },
 
-    setup(_defaultObj, options) {
-        super.setup(...arguments);
+    setup() {
+        super.setup();
         this.select_uom = useRef("uom_value");
     },
-
 });
