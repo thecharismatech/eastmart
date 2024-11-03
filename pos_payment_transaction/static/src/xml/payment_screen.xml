@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_payment_transaction.PaymentScreen">
+        <div class="payment-transaction">
+            <div class="transaction-container">
+                <input type="text" 
+                       t-on-input="onTransactionInput"
+                       pattern="\d{6}"
+                       required="true"/>
+            </div>
+            <button class="validate-btn" 
+                    t-on-click="processPayment">
+                Validate Payment
+            </button>
+        </div>
+    </t>
+</templates>
