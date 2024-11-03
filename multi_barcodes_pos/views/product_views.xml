@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
                 <page string="Additional Barcodes">
-                    <field name="barcode_ids" mode="tree">
+                    <field name="barcode_ids" mode="list">
                         <list editable="bottom">
                             <field name="barcode"/>
                         </list>

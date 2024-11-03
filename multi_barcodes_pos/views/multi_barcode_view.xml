@@ -1,11 +1,11 @@
-<record id="view_multi_barcode_tree" model="ir.ui.view">
-    <field name="name">multi.barcode.tree</field>
+<record id="view_multi_barcode_list" model="ir.ui.view">
+    <field name="name">multi.barcode.list</field>
     <field name="model">multi.barcode.products</field>
     <field name="arch" type="xml">
-        <tree string="Multi Barcodes">
+        <list string="Multi Barcodes">
             <field name="product_multi_id"/>
             <field name="multi_barcode"/>
-        </tree>
+        </list>
     </field>
 </record>
 

@@ -9,9 +9,9 @@
                 <page string="Additional Barcodes" name="multi_barcodes"
                       invisible="product_variant_count > 1">
                     <field name="template_multi_barcodes_ids">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="multi_barcode" required="1"/>
-                        </tree>
+                        </list>
                     </field>
                 </page>
             </xpath>
