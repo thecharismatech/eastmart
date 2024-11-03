@@ -1,34 +1,28 @@
-from odoo import fields, models, api
+from odoo import fields, models
 
-class MultiBarcodeProducts(models.Model):
-    _name = 'multi.barcode.products'
-    _description = 'For creating multiple Barcodes for products'
+class MultiBarcode(models.Model):
+    _name = "multi.barcode"
+    _description = "Multiple Barcodes for Products"
+    _rec_name = "barcode"
 
-    multi_barcode = fields.Char(
-        string="Barcode",
-        help="Provide alternate barcodes for this product",
-        index=True  # Added index for better performance
-    )
-    product_multi_id = fields.Many2one(
-        'product.product',
-        string="Product",
-        help="Multi Barcode Product",
-        ondelete='cascade'  # Added cascade deletion
-    )
-    template_multi_id = fields.Many2one(
-        'product.template',
-        string="Product",
-        help="Product with Multi Barcode",
-        ondelete='cascade'  # Added cascade deletion
-    )
+    barcode = fields.Char(string="Barcode", required=True)
+    product_id = fields.Many2one("product.product", string="Product")
+    product_tmpl_id = fields.Many2one("product.template", string="Product Template")
 
-    _sql_constraints = [
-        ('field_unique', 'unique(multi_barcode)',
-         'This barcode already exists! Barcodes must be unique.')
-    ]
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
+    
+    barcode_ids = fields.One2many("multi.barcode", "product_tmpl_id", string="Additional Barcodes")
 
-    @api.model
-    def get_barcode_val(self, barcode):
-        """Returns barcode of record in self and product id"""
-        temp = self.search([('multi_barcode', '=', barcode)], limit=1)
-        return temp.multi_barcode, temp.product_multi_id.id
+class ProductProduct(models.Model):
+    _inherit = "product.product"
+
+    barcode_ids = fields.One2many("multi.barcode", "product_id", string="Additional Barcodes")
+
+    def get_all_barcodes(self):
+        self.ensure_one()
+        barcodes = []
+        if self.barcode:
+            barcodes.append(self.barcode)
+        barcodes.extend(self.barcode_ids.mapped("barcode"))
+        return barcodes

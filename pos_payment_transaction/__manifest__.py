@@ -1,4 +1,4 @@
-﻿{
+{
     'name': 'POS Payment Transaction Number',
     'version': '18.0.1.0.0',
     'category': 'Point of Sale',
