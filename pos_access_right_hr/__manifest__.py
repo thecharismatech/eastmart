@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 {
     'name': 'POS Access Right',
-    'version': '18.0.2.1.1',
+    'version': "18.0.1.0.0",
     "category": 'Point of Sale',
     'summary': 'To Restrict POS features for cashiers',
     'description': 'This app allows you to enable or disable POS features '
