@@ -1,6 +1,6 @@
 {
     'name': 'POS Payment Transaction Number',
-    'version': '18.0.1.0.0',
+    'version': "18.0.1.0.0",
     'category': 'Point of Sale',
     'summary': 'Add transaction numbers to POS payment methods',
     'description': """
