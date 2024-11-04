@@ -1,4 +1,4 @@
-﻿//** @odoo-module **/('pos_payment_transaction/models', function(require) {
+//** @odoo-module **/('pos_payment_transaction/models', function(require) {
     'use strict';
 
     const { Order } = import 'point_of_sale/models');
