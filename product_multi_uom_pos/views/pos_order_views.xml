@@ -7,7 +7,7 @@
 <!--        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>-->
 <!--        <field name="model">pos.order</field>-->
 <!--        <field name="arch" type="xml">-->
-<!--            <xpath expr="//field[@name='lines']/tree/field[@name='qty']"-->
+<!--            <xpath expr="//field[@name='lines']/list/field[@name='qty']"-->
 <!--                   position="after">-->
 <!--                <field name="uom_id" column_invisible="True"/>-->
 <!--            </xpath>-->

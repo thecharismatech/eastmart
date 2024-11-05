@@ -1,0 +1,21 @@
+<templates xml:space="preserve">
+    <t t-name="pos_payment_transaction.PaymentScreen">
+        <div class="payment-screen">
+            <div class="transaction-input-container">
+                <input 
+                    type="text"
+                    t-model="state.transactionNumber"
+                    t-on-input="onTransactionInput"
+                    maxlength="6"
+                    pattern="\d*"
+                    class="transaction-input"
+                    placeholder="Enter 6-digit code"/>
+                <button 
+                    t-on-click="validateAndProcess"
+                    t-att-class="{ 'validate-btn': true, 'valid': state.isValid }">
+                    Validate Payment
+                </button>
+            </div>
+        </div>
+    </t>
+</templates>

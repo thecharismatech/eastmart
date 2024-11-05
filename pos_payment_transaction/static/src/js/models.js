@@ -1,8 +1,8 @@
-﻿odoo.define('pos_payment_transaction.models', function(require) {
+//** @odoo-module **/('pos_payment_transaction/models', function(require) {
     'use strict';
 
-    const { Order } = require('point_of_sale.models');
-    const Registries = require('point_of_sale.Registries');
+    const { Order } = import 'point_of_sale/models');
+    const Registries = import 'point_of_sale/Registries');
 
     const PosPaymentTransactionOrder = (Order) => class PosPaymentTransactionOrder extends Order {
         //@override

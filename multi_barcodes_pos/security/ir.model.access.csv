@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_multi_barcode_products_user,multi.barcode.products.user,model_multi_barcode_products,base.group_user,1,1,1,1
+access_multi_barcode_user,multi.barcode.user,model_multi_barcode,base.group_user,1,1,1,1

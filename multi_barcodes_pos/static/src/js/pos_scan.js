@@ -1,32 +1,28 @@
-odoo.define('multi_barcodes_pos.pos_scan', function(require) {
-    'use strict';
+/** @odoo-module */
+import { PosStore } from "@point_of_sale/store/pos_store";
+import { patch } from "@web/core/utils/patch";
 
-    const { PosGlobalState } = require('point_of_sale.models');
-    const Registries = require('point_of_sale.Registries');
+patch(PosStore.prototype, {
+    async _processData(loadedData) {
+        await super._processData(...arguments);
+        this.multi_barcodes_map = new Map(
+            loadedData['multi.barcode.products'].map(item => [
+                item.multi_barcode, 
+                item.product_multi_id[0]
+            ])
+        );
+    },
 
-    const MultiBarcodePosGlobalState = (PosGlobalState) => class MultiBarcodePosGlobalState extends PosGlobalState {
-        async _processData(loadedData) {
-            await super._processData(...arguments);
-            this.multi_barcodes = loadedData['multi.barcode.products'];
-        }
-
-        async scan_product(code) {
-            let product = null;
-            const multi_barcode = this.multi_barcodes.find(item => item.multi_barcode === code);
-            
-            if (multi_barcode) {
-                product = this.db.get_product_by_id(multi_barcode.product_multi_id[0]);
+    async scan_product(code) {
+        let product = this.db.get_product_by_barcode(code);
+        
+        if (!product) {
+            const productId = this.multi_barcodes_map.get(code);
+            if (productId) {
+                product = this.db.get_product_by_id(productId);
             }
-            
-            if (!product) {
-                return super.scan_product(...arguments);
-            }
-            
-            return product;
         }
+        
+        return product || null;
     }
-
-    Registries.Model.extend(PosGlobalState, MultiBarcodePosGlobalState);
-
-    return MultiBarcodePosGlobalState;
 });

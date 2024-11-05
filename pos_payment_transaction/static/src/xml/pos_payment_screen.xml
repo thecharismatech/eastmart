@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="pos_payment_transaction.PaymentScreen" t-inherit="point_of_sale.PaymentScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('payment-controls')]" position="inside">
+            <input type="text" 
+                   class="transaction-input" 
+                   t-model="currentOrder.selected_paymentline.transaction_number"
+                   placeholder="Enter 6-digit Transaction Number"/>
+        </xpath>
+    </t>
+</templates>
