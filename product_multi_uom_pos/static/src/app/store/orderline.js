@@ -2,19 +2,33 @@
 
 import { patch } from "@web/core/utils/patch";
 import { Orderline, Order } from "@point_of_sale/app/store/models";
+  patch(Orderline.prototype, {
+      export_as_JSON(){
+          const cachedJson = this._getCachedJson();
+          if (cachedJson) return cachedJson;
+        
+          const json = super.export_as_JSON.call(this);
+          if (!this.product_uom_id){
+              this.product_uom_id = this.product.uom_id;
+          }
+          json.product_uom_id = this.product_uom_id[0];
+          this._setCachedJson(json);
+          return json;
+      },
+    
+      _getCachedJson() {
+          return this._jsonCache;
+      },
+    
+      _setCachedJson(json) {
+          this._jsonCache = json;
+      },
+    
+      clearCache() {
+          this._jsonCache = null;
+      },
 
-patch(Orderline.prototype, {
-    export_as_JSON(){
-        var json = super.export_as_JSON.call(this);
-        // Check if the product_uom_id is undefined.If yes, set product_uom_id to the default uom_id of the product
-        if (this.product_uom_id == undefined){
-            this.product_uom_id = this.product.uom_id;
-        }
-        // Set the product_uom_id in the JSON object
-        json.product_uom_id = this.product_uom_id[0];
-        return json;
-    },
-    init_from_JSON(json){
+      init_from_JSON(json){
         super.init_from_JSON(...arguments);
         // Set the product_uom_id from the JSON data
         if(this.pos.units_by_id[json.product_uom_id]){

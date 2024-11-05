@@ -1,12 +1,12 @@
 import { PaymentScreen } from "@point_of_sale/app/screens/payment_screen/payment_screen";
 import { patch } from "@web/core/utils/patch";
+import { useService } from "@web/core/utils/hooks";
 
 patch(PaymentScreen.prototype, {
     setup() {
         super.setup();
-        this.popup = this.env.services.popup;
+        this.popup = useService("popup");
     },
-
     async validateOrder(force_validation) {
         const order = this.currentOrder;
         const paymentLines = order.get_paymentlines();
