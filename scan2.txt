@@ -1,0 +1,298 @@
+=== SCAN 2 ===
+
+MODULES:
+
+
+multi_barcodes_pos:
+
+VARS:
+          barcodes 
+          cache_key 
+          context 
+          help
+          new_model 
+          record 
+          result 
+          string
+      _barcode_cache 
+      _description 
+      _inherit 
+      _name 
+      _rec_name 
+      barcode 
+      barcode_ids 
+      multi_barcode 
+      product_id 
+      product_multi_barcodes_ids 
+      product_tmpl_id 
+
+FUNCS:
+      _get_pos_ui_multi_barcode_products
+      _loader_params_multi_barcode_products
+      _loader_params_product_product
+      _pos_data_process
+      _pos_ui_models_to_load
+      get_all_barcodes
+
+FILES:
+  PosStore.js
+  ProductWidget.js
+  __init__.py
+  __init__.py
+  __manifest__.py
+  multi_barcode_products.py
+  multi_barcode_view.xml
+  pos_scan.js
+  pos_session.py
+  pos_store.js
+  product_product.py
+  product_product_views.xml
+  product_template.py
+  product_template_views.xml
+  product_views.xml
+
+pos_access_right_hr:
+
+VARS:
+          help
+          result 
+          string
+      _inherit 
+      disable_customer 
+      disable_discount 
+      disable_numpad 
+      disable_payment 
+      disable_plus_minus 
+      disable_price 
+      disable_qty 
+      disable_remove_button 
+
+FUNCS:
+      _loader_params_hr_employee
+
+FILES:
+  ActionpadWidget.js
+  ActionpadWidget.xml
+  PosStore.js
+  ProductScreen.js
+  __init__.py
+  __init__.py
+  __manifest__.py
+  hr_employee_base.py
+  hr_employee_views.xml
+  pos_session.py
+
+pos_payment_transaction:
+
+VARS:
+          index
+          required
+          size
+          string
+      _inherit 
+      _sql_constraints 
+      transaction_number 
+
+FUNCS:
+      _check_transaction_number
+  create
+
+FILES:
+  __init__.py
+  __init__.py
+  __manifest__.py
+  models.js
+  payment_screen.js
+  payment_screen.xml
+  pos_payment.py
+  pos_payment_screen.xml
+  pos_payment_transaction.xml
+  pos_payment_views.xml
+
+pos_transaction_validate:
+
+VARS:
+          default
+          help
+          string
+      _inherit 
+      require_transaction_id 
+      transaction_id 
+
+FUNCS:
+          default=True,
+      _check_transaction_id
+      _validate_transaction
+
+FILES:
+  __init__.py
+  __init__.py
+  __manifest__.py
+  payment_screen.js
+  payment_screen.xml
+  pos_assets.xml
+  pos_config.py
+  pos_config_view.xml
+  pos_payment.py
+  pos_session.py
+
+pos_user_restrict:
+
+VARS:
+          comodel_name
+          help
+          res 
+          string
+      _inherit 
+      pos_config_ids 
+
+FUNCS:
+      setUp
+      test_01_no_allowed_pos
+      test_02_pos_1_allowed
+      write
+
+FILES:
+  __init__.py
+  __init__.py
+  __init__.py
+  __manifest__.py
+  pos_user_restrict_security.xml
+  res_users.py
+  res_users_views.xml
+  test_access_rights.py
+
+pos_zero_quantity_restrict:
+
+VARS:
+
+FUNCS:
+
+FILES:
+  ProductScreen.js
+  __init__.py
+  __manifest__.py
+
+product_multi_uom_pos:
+
+VARS:
+                                          domain
+                                          help
+                                          string
+                                       help
+                                       related
+                                     help
+                                  move_name 
+                                  name 
+                               help
+                              account_payment 
+                              is_loss 
+                              is_profit 
+                              payment_method 
+                          account_move 
+                          cash_in_count 
+                          cash_in_out_list 
+                          cash_moves 
+                          cash_out_count 
+                          is_cash_method 
+                          previous_session 
+                          ref_value 
+                      date_stop 
+                  account_payments 
+                  cash_counted 
+                  cash_name 
+                  date_start 
+                  date_stop 
+                  domain 
+                  product
+                  sessions 
+                  today 
+                  user_tz 
+              base_amounts 
+              cash_counted 
+              category_dictionnary 
+              config_currencies 
+              configs 
+              currency 
+              date_start 
+              date_stop 
+              domain 
+              is_cash_method 
+              key
+              line_taxes 
+              order_lines 
+              payments 
+              session_name 
+              sessions 
+              state 
+              uom_id 
+              user_currency 
+          config_names 
+          config_parameter
+          configs 
+          confirmed_moves 
+          currency 
+          discount_amount 
+          discount_number 
+          domain 
+          help
+          invoiceList 
+          invoiceTotal 
+          key2 
+          keys1 
+          lines_by_product 
+          move_vals 
+          moves 
+          orders 
+          payment_ids 
+          products 
+          products_sold 
+          readonly
+          refund_done 
+          refund_products 
+          refund_taxes 
+          refund_taxes_info 
+          related
+          result 
+          session_name 
+          sessions 
+          string
+          taxes 
+          taxes_info 
+          total 
+      _inherit 
+      pos_multi_uom 
+      pos_multi_uom_ids 
+      product_uom_category_id 
+      product_uom_id 
+      uom_id 
+
+FUNCS:
+      _create_move_from_pos_order_lines
+      _export_for_ui
+      _get_products_and_taxes_dict
+      _loader_params_product_product
+      _prepare_stock_move_vals
+      create
+      get_sale_details
+
+FILES:
+  __init__.py
+  __init__.py
+  __manifest__.py
+  models.js
+  orderline.js
+  orderline.js
+  orderline.js
+  orderline.xml
+  pos_config.py
+  pos_order_line.py
+  pos_order_views.xml
+  pos_session.py
+  product_template.py
+  product_template_views.xml
+  report_sale_details.py
+  res_config_settings.py
+  res_config_settings_views.xml
+  stock_picking.py
+  uom_data.xml
